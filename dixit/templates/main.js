@@ -403,7 +403,7 @@ $(document).ready(function() {
 
     // Change either the current cards or the user's hand
     function cardCell(card, hack) {
-        return '<div class="card magnifier" id="' + card.cid + '" hack="' + hack + '">'
+        return '<div class="card" id="' + card.cid + '" hack="' + hack + '">'
               + '<img class="small" src="' + card.url + '" />'
               + '<div class="large" style="background-image:url(\'' + card.url + '\')"></div>'
               + '</div>';
@@ -418,7 +418,6 @@ $(document).ready(function() {
             html.push(cardCell(card, containerId == '#hand'));
         });
         $(containerId).html(html.join('')).fadeIn();
-        $('.card').mousemove(magnifyHandler).mouseout(magnifyHandler);
     }
 
 
