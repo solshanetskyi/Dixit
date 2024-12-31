@@ -533,8 +533,35 @@ h1 {
 /* Game board display */
 
 #clue {
+  height: 40px;
   font-size: 20px;
   text-align: center;
+}
+
+#turnReminderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 5px 10px;
+  width: 200px;
+  margin: 10px auto;
+  font-size: larger;
+  background-color: #ffe6e6;
+  display: none;
+}
+
+#turnReminderIcon {
+  color: red;
+  font-size: 24px;
+  margin-right: 0px;
+}
+
+#turnReminderText {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #cards {

@@ -21,11 +21,11 @@ observerMessages[{{ states.END }}] = 'Game over';
 
 // Summary of game state for a player who can take an action
 var actionMessages = [];
-actionMessages[{{ states.BEGIN }}] = 'Start the game once you have all players.';
-actionMessages[{{ states.CLUE }}] = 'Create a clue.<br />You can show/hide your hand at the bottom.';
-actionMessages[{{ states.PLAY }}] = 'Select the best card for the following clue.';
-actionMessages[{{ states.VOTE }}] = 'Vote for the card you think was selected by the clue maker, given their clue.';
-actionMessages[{{ states.END }}] = 'Play again?';
+actionMessages[{{ states.BEGIN }}] = 'Start the game once ready!';
+actionMessages[{{ states.CLUE }}] = 'Create a clue!';
+actionMessages[{{ states.PLAY }}] = 'Play the card!';
+actionMessages[{{ states.VOTE }}] = 'Cast your vote!';
+actionMessages[{{ states.END }}] = 'Game ended!';
 var hideGameTitle = 'Hide game';
 
 
@@ -309,15 +309,20 @@ $(document).ready(function() {
 
             // State-dependent display / options
             if (!data.isPlayer) {
+                $('#turnReminderContainer').hide();
                 $('#gameState').html(observerMessages[data.state]);
-            } else if (data.requiresAction[data.user]) {
+            } else if (data.requiresAction[data.user] && votesHash == null) {
                 $('#gameState').html(actionMessages[data.state]);
                 if (!document.hasFocus()) {
                     document.title = ALERT_TITLE;
                 }
+                $('#turnReminderText').text(actionMessages[data.state]);
+                $('#turnReminderContainer').show();
             } else {
+                $('#turnReminderContainer').hide();
                 $('#gameState').html(waitingMessages[data.state]);
             }
+
             $('#joinGame').toggle();
             $('#startGame').toggle(data.state == {{ states.BEGIN }} && data.isHost
                                 && numPlayers >= {{ limits.min_players }});
