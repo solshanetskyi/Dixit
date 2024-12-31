@@ -362,7 +362,7 @@ $(document).ready(function() {
                         tokenContainer.append('<div class="token" '
                                   + 'style="'
                                   + 'z-index: 1100;'
-                                  + 'background-image: url(\'static/images/bunnyrun.png\');'
+                                  + 'background-image: url(\'static/images/bunnyready.png\');'
                                   + 'background-color:#' + data.colours[puid] + '">&nbsp;</div>');
                     });
                     $('.token').fadeIn();
