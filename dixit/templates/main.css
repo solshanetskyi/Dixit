@@ -493,6 +493,10 @@ h1 {
   border-radius: 20px;
   overflow: hidden;
   height: {{ display.Sizes.CARD_HEIGHT }}px;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
+  display: flex;
 }
 
 .zoomed {
@@ -524,13 +528,16 @@ h1 {
   overflow: visible;
 }
 
+.tokenContainer {
+  position: absolute;
+}
+
 .token {
   /* Transparent voting token */
   width: {{ display.Sizes.TOKEN }}px;
   height: {{ display.Sizes.TOKEN }}px;
   border: 2px solid #AAA;
-  position: absolute;
-  opacity: 0.7;
+  background-size: cover; 
   display: none;
 }
 
@@ -557,6 +564,7 @@ h1 {
   background-color: #FFF;
   padding: 5px;
   border: 1px solid #999;
+  z-index: 2000;
   -webkit-border-top-left-radius: 15px;
   -webkit-border-top-right-radius: 15px;
   -moz-border-radius-topleft: 15px;

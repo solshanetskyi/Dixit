@@ -358,12 +358,12 @@ $(document).ready(function() {
                 votesHash = data.round.votesHash;
                 if (data.round.cards !== undefined) {
                     $.each(data.round.votes, function(puid, cid) {
-                        var card = $('#' + cid);
-                        var randomLeft = Math.ceil(card.position().left + Math.random() * {{ display.Sizes.CARD_WIDTH - display.Sizes.TOKEN }});
-                        var randomTop = Math.ceil(card.offset().top + Math.random() * {{ display.Sizes.CARD_HEIGHT - display.Sizes.TOKEN }});
-                        card.append('<div class="token" title="' + textToHtml(data.players[puid])
-                                  + '" style="left:' + randomLeft + 'px;top:' + randomTop
-                                  + 'px;background-color:#' + data.colours[puid] + '">&nbsp;</div>');
+                        var tokenContainer = $('#' + cid + '>.tokenContainer');
+                        tokenContainer.append('<div class="token" title="' + textToHtml(data.players[puid]) + '" '
+                                  + 'style="'
+                                  + 'z-index: 1100;'
+                                  + 'background-image: url(\'static/images/bunnyrun.png\');'
+                                  + 'background-color:#' + data.colours[puid] + '">&nbsp;</div>');
                     });
                     $('.token').fadeIn();
                     $.each(data.round.owners, function(puid, cid) {
@@ -419,6 +419,7 @@ $(document).ready(function() {
         return '<div class="card" id="' + card.cid + '" hack="' + hack + '">'
               + '<img class="small" src="' + card.url + '" />'
               + '<div class="large" style="background-image:url(\'' + card.url + '\')"></div>'
+              + '<div class="tokenContainer"></div>'
               + '</div>';
     }
     function updateCards(cards, containerId) {
