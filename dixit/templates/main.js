@@ -311,7 +311,7 @@ $(document).ready(function() {
             if (!data.isPlayer) {
                 $('#turnReminderContainer').hide();
                 $('#gameState').html(observerMessages[data.state]);
-            } else if (data.requiresAction[data.user] && votesHash == null) {
+            } else if (data.requiresAction[data.user]) {
                 $('#gameState').html(actionMessages[data.state]);
                 if (!document.hasFocus()) {
                     document.title = ALERT_TITLE;
