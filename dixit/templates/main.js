@@ -7,7 +7,7 @@ var ALERT_TITLE = TITLE + ' (!)';
 var GAMELIST_INTERVAL = 10000;
 var USERLIST_INTERVAL = 20000;
 var CHATROOM_INTERVAL = 3000;
-var GAMEBOARD_INTERVAL = 4000;
+var GAMEBOARD_INTERVAL = 1000;
 
 
 // Summary of game state for an observer
