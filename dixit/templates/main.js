@@ -359,7 +359,7 @@ $(document).ready(function() {
                 if (data.round.cards !== undefined) {
                     $.each(data.round.votes, function(puid, cid) {
                         var tokenContainer = $('#' + cid + '>.tokenContainer');
-                        tokenContainer.append('<div class="token" title="' + textToHtml(data.players[puid]) + '" '
+                        tokenContainer.append('<div class="token" '
                                   + 'style="'
                                   + 'z-index: 1100;'
                                   + 'background-image: url(\'static/images/bunnyrun.png\');'
@@ -368,12 +368,11 @@ $(document).ready(function() {
                     $('.token').fadeIn();
                     $.each(data.round.owners, function(puid, cid) {
                         var card = $('#' + cid);
-                        card.css({'background-color' : '#' + data.colours[puid],
-                                  'border-color' : '#' + data.colours[puid]});
-                        if (puid != data.round.clueMaker) {
-                            card.find('.small').fadeTo(400, 0.1);
+                        var tokenContainer = $('#' + cid + '>.tokenContainer');
+                        if (puid == data.round.clueMaker) {
+                            card.addClass("correctCard");
                         }
-                        card.attr('title', data.players[puid]);
+                        tokenContainer.append('<div class="cardUser">' + data.players[puid] + '</div>');
                     });
                 }
             }
