@@ -489,10 +489,22 @@ h1 {
   border: 1px solid #bbb;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
+  transition: transform 0.3s ease, z-index 0.3s ease, margin-top 0.3s ease;
   border-radius: 20px;
   overflow: hidden;
   height: {{ display.Sizes.CARD_HEIGHT }}px;
 }
+
+.zoomed {
+  transform: scale(1.5);
+  margin-top: -95px;
+  z-index: 10;
+}
+
+#cards > .zoomed {
+  margin-top: 95px;
+}
+
 
 .card .small {
   width: {{ display.Sizes.CARD_WIDTH }}px;
@@ -509,6 +521,7 @@ h1 {
 
 #cards {
   cursor:crosshair;
+  overflow: visible;
 }
 
 .token {
@@ -533,11 +546,12 @@ h1 {
   z-index: 1;
   white-space: nowrap;
   text-align: center;
+  overflow: visible;
 }
 
 #hand {
   cursor: crosshair;
-  overflow-x: auto;
+  overflow: visible;
   display: inline-block;
   height: {{ display.Sizes.CARD_HEIGHT }}px;
   background-color: #FFF;

@@ -378,19 +378,32 @@ $(document).ready(function() {
                 }
             }
 
+            function mouseOver(e) {
+                if (!$('#actionBox').is(':visible')) {
+                    $(this).addClass("zoomed");
+                }
+            }
+
+            function mouseOut(e) {
+                if (!$('#actionBox').is(':visible')) {
+                    $('.card').removeClass("zoomed");
+                }
+            }
+
             // Bind/unbind state-dependent click handlers to all cards
             if (data.state == {{ states.CLUE }} && clueMaker == data.user) {
                 $('#cards .card').unbind('click').removeClass('clickable');
                 $('#hand .card').click(setupActionFormHandler({{ commands.CREATE_CLUE }})).addClass('clickable');
             } else if (data.state == {{ states.PLAY }} && data.requiresAction[data.user]) {
                 $('#cards .card').unbind('click').removeClass('clickable');
-                $('#hand .card').click(setupActionFormHandler({{ commands.PLAY_CARD }})).addClass('clickable');
+                $('#hand .card').click(setupActionFormHandler({{ commands.PLAY_CARD }})).addClass('clickable').addClass('clickable');
             } else if (data.state == {{ states.VOTE }} && data.requiresAction[data.user]) {
                 $('#hand .card').unbind('click').removeClass('clickable');
                 $('#cards .card').click(setupActionFormHandler({{ commands.CAST_VOTE }})).addClass('clickable');
             } else {
                 $('.card').unbind('click').removeClass('clickable');
             }
+            $('.card').on('mouseover', mouseOver).on('mouseout', mouseOut);
         }).always(function() {
             setTimeout(gameBoardWorker, GAMEBOARD_INTERVAL);
         });
@@ -458,6 +471,8 @@ $(document).ready(function() {
 
     function setupActionFormHandler(cmd) {
         return function(e) {
+            $('.card').removeClass('zoomed');
+            $(this).addClass('zoomed');
             // Handler for when a card is clicked; sets up the actionForm appropriately
             $('#actionForm').data('cmd', cmd);
             if (cmd == {{ commands.CREATE_CLUE }}) {
@@ -494,6 +509,7 @@ $(document).ready(function() {
     });
     $('#actionCancel').click(function(e) {
         $('#actionBox').hide();
+        $('.card').removeClass("zoomed");
         e.preventDefault();
     });
     $('#actionForm').validate();
